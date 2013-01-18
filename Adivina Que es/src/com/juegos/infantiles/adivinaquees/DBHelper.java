@@ -121,11 +121,11 @@ public class DBHelper extends SQLiteOpenHelper{
 	public void open() throws SQLException{
 	 
 	//Abre la base de datos
-	try {
+	/*try {
 	createDataBase();
 	} catch (IOException e) {
 	throw new Error("Ha sido imposible crear la Base de Datos");
-	}
+	}*/
 	 
 	String myPath = "/data/data/com.juegos.infantiles.adivinaquees/databases/bd_juegoAdivina";
 	db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
