@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="102dp"
-        android:src="@drawable/frutas" />
+        android:src="@drawable/frutas" android:contentDescription="Frutas"/>
 
     <ImageButton
         android:id="@+id/btnAnimales"

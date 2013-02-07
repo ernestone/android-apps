@@ -32,13 +32,12 @@ public final class R {
     public static final class id {
         public static final int btnAnimales=0x7f080001;
         public static final int btnFrutas=0x7f080000;
-        public static final int btnJugar=0x7f080008;
-        public static final int imageButton2=0x7f080007;
+        public static final int btnJugar=0x7f080007;
         public static final int img1=0x7f080002;
         public static final int img2=0x7f080003;
         public static final int img3=0x7f080004;
         public static final int img4=0x7f080005;
-        public static final int menu_settings=0x7f080009;
+        public static final int menu_settings=0x7f080008;
         public static final int txtPalabraClave=0x7f080006;
     }
     public static final class layout {
@@ -58,8 +57,8 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
-        public static final int btnAnimales=0x7f050008;
-        public static final int btnFrutas=0x7f050009;
+        public static final int boton_animales=0x7f050009;
+        public static final int boton_frutas=0x7f050008;
         public static final int hello_world=0x7f050001;
         public static final int jugar=0x7f050004;
         public static final int menu_settings=0x7f050002;
