@@ -44,9 +44,8 @@ public final class R {
         public static final int activity_inicio=0x7f030000;
         public static final int activity_juego=0x7f030001;
         public static final int activity_menu=0x7f030002;
-        public static final int activity_primera=0x7f030003;
-        public static final int activity_principal=0x7f030004;
-        public static final int inicio=0x7f030005;
+        public static final int activity_principal=0x7f030003;
+        public static final int inicio=0x7f030004;
     }
     public static final class menu {
         public static final int activity_inicio=0x7f070000;
@@ -59,6 +58,8 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int boton_animales=0x7f050009;
         public static final int boton_frutas=0x7f050008;
+        public static final int btnAnimales=0x7f05000c;
+        public static final int btnFrutas=0x7f05000b;
         public static final int hello_world=0x7f050001;
         public static final int jugar=0x7f050004;
         public static final int menu_settings=0x7f050002;
