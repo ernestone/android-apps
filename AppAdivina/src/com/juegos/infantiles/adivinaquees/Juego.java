@@ -6,6 +6,8 @@ import java.util.Random;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
@@ -23,7 +25,8 @@ public class Juego extends Activity implements OnClickListener{
 	ArrayList<Imagen> imagenes;
 	int idResource;
 	TextView txtPalabraClave, img1,img2,img3,img4;
-	DBHelper db;
+	SQLiteDatabase db;
+	CreacionBDSQLite creaBDSL=new CreacionBDSQLite(this.getApplicationContext());;
 	Random rand = new Random();
 	
     @Override
@@ -41,13 +44,12 @@ public class Juego extends Activity implements OnClickListener{
         
         Log.i("Aviso", "hola");
         
-        db=new DBHelper(this.getApplicationContext());
+        db=creaBDSL.getWritableDatabase();
         
-        db.open();
         
-        Tipo pkTipo=db.getTipo(tipo);
+        Tipo pkTipo=this.getTipo(tipo);
         
-        imagenes=db.getImagenes(pkTipo.getPkTipo());
+        imagenes=this.getImagenes(pkTipo.getPkTipo());
         
         db.close();
         
@@ -56,7 +58,7 @@ public class Juego extends Activity implements OnClickListener{
         	imagen.setIDResource(this.idResource);
 		}
 
-        //Con esta función, escogemos la imagen para acertar.
+        //Con esta funciï¿½n, escogemos la imagen para acertar.
         ArrayList<Imagen> imagenesFinales=imagenesAMostrar(4);
         
         imagenCorrecta(imagenesFinales);
@@ -137,4 +139,39 @@ public class Juego extends Activity implements OnClickListener{
     	
     	return imagenesDefinitivas;
     }
+    
+    public Tipo getTipo(String cadenaTipo) {
+		Tipo tipo=new Tipo();
+		
+		String[] cols=new String[] { "pkTipo", "nombre" };
+		
+		Cursor result = db.query(true, "tipos",cols,"nombre='" + cadenaTipo+"'", null, null, null,null, null);
+		
+		if ((result.getCount() == 0) || !result.moveToFirst()) {
+		//Si la alarma no existe, devuelve una alarma con valores -1 y -1
+			//tipo = new tipo(-1,-1);
+		} else {
+			if (result.moveToFirst()) {
+				tipo = new Tipo(
+				result.getInt(result.getColumnIndex("pkTipo")),
+				result.getString(result.getColumnIndex("nombre")));
+			}
+		}
+		return tipo;
+	}
+		 
+	public ArrayList<Imagen> getImagenes(int fkTipo) {
+		ArrayList<Imagen> imagenes = new ArrayList<Imagen>();
+		
+		String[] cols=new String[] { "nombre" };
+		
+		Cursor result = db.query("imagenes",cols, "fkTipo=" + fkTipo, null, null, null, null);
+		
+		if (result.moveToFirst())
+			do {
+					imagenes.add(new Imagen(
+					result.getString(result.getColumnIndex("nombre"))));
+			} while(result.moveToNext());
+			return imagenes;
+	}
 }
