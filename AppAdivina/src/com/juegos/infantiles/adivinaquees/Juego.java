@@ -1,40 +1,47 @@
 package com.juegos.infantiles.adivinaquees;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import dani.funciones.Basicas;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.NavUtils;
 
-public class Juego extends Activity implements OnClickListener{
+public class Juego extends Activity implements OnClickListener,TextToSpeech.OnInitListener{
 
 	ArrayList<Imagen> imagenes;
 	int idResource;
 	TextView txtPalabraClave, img1,img2,img3,img4;
 	SQLiteDatabase db;
-	CreacionBDSQLite creaBDSL=new CreacionBDSQLite(this.getApplicationContext());;
+	CreacionBDSQLite creaBDSL;
 	Random rand = new Random();
+	private TextToSpeech mTts;
+    // This code can be any value you want, its just a checksum.
+    private static final int MY_DATA_CHECK_CODE = 1234;
+    Context contexto=this;
+    TextToSpeech.OnInitListener listener=this;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juego);
+        setContentView(R.layout.juego);
         
         String tipo=getIntent().getStringExtra("Tipo");
+        
+        Log.i("Tipo", tipo);
         
         this.txtPalabraClave=(TextView) this.findViewById(R.id.txtPalabraClave);
         this.img1=(TextView) this.findViewById(R.id.img1);
@@ -42,7 +49,12 @@ public class Juego extends Activity implements OnClickListener{
         this.img3=(TextView) this.findViewById(R.id.img3);
         this.img4=(TextView) this.findViewById(R.id.img4);
         
+        
         Log.i("Aviso", "hola");
+        
+        
+        creaBDSL=new CreacionBDSQLite(this.getApplicationContext());
+        
         
         db=creaBDSL.getWritableDatabase();
         
@@ -57,10 +69,25 @@ public class Juego extends Activity implements OnClickListener{
         	this.idResource=Juego.this.getResources().getIdentifier("drawable/" + imagen.getNombre(), null, Juego.this.getPackageName());
         	imagen.setIDResource(this.idResource);
 		}
-
-        //Con esta funci�n, escogemos la imagen para acertar.
-        ArrayList<Imagen> imagenesFinales=imagenesAMostrar(4);
         
+        //instanciamos el arrayList con los números escogidos de toda la lista de imagenes
+        ArrayList<Integer> ordenImagenes=Basicas.escoger(imagenes.size(),4);
+        
+        //y luego, lo desordenamos
+        ordenImagenes=Basicas.desordenar(ordenImagenes);
+        
+        //despues, creamos el arrayList que contendrán las imagenes escogidas y en el orden final
+        ArrayList<Imagen> imagenesFinales=new ArrayList<Imagen>();
+        
+        //y le añadimos las imagenes utilizando el arrayList de los numeros de imagen con el orden
+        for (int num : ordenImagenes) {
+			imagenesFinales.add(imagenes.get(num));
+		}
+        
+        
+        //ArrayList<Imagen> imagenesFinales=imagenesAMostrar(4);
+       
+        //Con esta funci�n, escogemos la imagen para acertar.
         imagenCorrecta(imagenesFinales);
         
         
@@ -109,6 +136,22 @@ public class Juego extends Activity implements OnClickListener{
         
         imagenes.get(index).setCorrecto(true);
         this.txtPalabraClave.setText(imagenes.get(index).getNombre());
+        
+        
+        TimerTask timerTask = new TimerTask() 
+        { 
+            public void run()  
+            { 
+            	mTts = new TextToSpeech(contexto, listener); 
+            } 
+        }; 
+
+         // Aquí se pone en marcha el timer cada segundo. 
+        Timer timer = new Timer(); 
+        // Dentro de 0 milisegundos avísame cada 1000 milisegundos 
+        timer.scheduleAtFixedRate(timerTask, 1500, 5000);
+        
+        
 	}
 
     public ArrayList<Imagen> imagenesAMostrar(int numImagenes){
@@ -173,5 +216,15 @@ public class Juego extends Activity implements OnClickListener{
 					result.getString(result.getColumnIndex("nombre"))));
 			} while(result.moveToNext());
 			return imagenes;
+	}
+
+	public void onInit(int status) {
+		//Log.i("Lengua del móvil",mTts.getLanguage().toString());
+		//mTts.setPitch((float) 0.6);
+		mTts.setSpeechRate((float) 0.5);
+		mTts.speak(txtPalabraClave.getText().toString(),
+                TextToSpeech.QUEUE_FLUSH,  // Drop all pending entries in the playback queue.
+                null);
+		
 	}
 }

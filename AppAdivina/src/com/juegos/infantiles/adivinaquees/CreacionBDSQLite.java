@@ -1,6 +1,7 @@
 package com.juegos.infantiles.adivinaquees;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -14,7 +15,7 @@ public class CreacionBDSQLite extends SQLiteOpenHelper {
    
 
 	//Nombre de la base de datos
-    public static final String NOMBREBD = "bd_juegoAdivina.sqlite";
+    public static final String NOMBREBD = Config.DBLITE_NOMBRE;
     //Versión de la base de datos
     public static final int VERSION = 1;
     //Nombre de la tabla (puede haber tantas como necesitemos)
@@ -41,19 +42,23 @@ public class CreacionBDSQLite extends SQLiteOpenHelper {
          * dos campos uno llamado id que almacenará un número entero, que será clave primaria con autoincremento y que no podrá ser null
          * y otro campo llamado nombre que será de tipo texto  
          */
-    	Log.i("Base de datos", "Estoy dentro!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        db.execSQL("create table " + NOMBRE_TABLA1 + "(" + ID1 + " integer primary key autoincrement not null, " + NOMBRE1 + "text);");
-        /*db.execSQL("create table " + NOMBRE_TABLA2 + "(" + ID2 + " integer primary key autoincrement not null, " + NOMBRE2 + "text, fkTipo numeric);");
+    	//Log.i("Base de datos", "Estoy dentro!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        db.execSQL("create table " + NOMBRE_TABLA1 + "(" + ID1 + " integer primary key autoincrement not null, " + NOMBRE1 + " text);");
+        db.execSQL("create table " + NOMBRE_TABLA2 + "(" + ID2 + " integer primary key autoincrement not null, " + NOMBRE2 + " text, fkTipo numeric);");
         db.execSQL("INSERT INTO tipos (nombre) VALUES ('Frutas')");
         db.execSQL("INSERT INTO tipos (nombre) VALUES ('Animales')");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('banana',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('naranja',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('pera',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('uva',1)");
-        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('ardilla',2)");
-        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('ballena',2)");
-        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('buho',2)");
-        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('caracol',2)");*/
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('conejo',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('elefante',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('tigre',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('perro',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('caballo',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('leon',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('lobo',2)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('gato',2)");
         
         /*String[] campos=new String[]{"pkTipo,nombre"};
         String[] args=new String[]{""};
@@ -85,7 +90,11 @@ public class CreacionBDSQLite extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {    
     }
 
-    
+    private void creacionCamposConRegistros(){
+    	HashMap<String, String[]> camposRegistros=Config.camposConRegistros();
+    	
+    	
+    }
 	
 
 	

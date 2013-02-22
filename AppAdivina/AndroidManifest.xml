@@ -21,15 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuInicial"
-            android:label="@string/title_activity_menu" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Juego"
             android:label="@string/title_activity_juego" >
             <intent-filter>
@@ -41,15 +32,6 @@
         <activity
             android:name=".Inicio"
             android:label="@string/title_activity_inicio" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Primera"
-            android:label="@string/title_activity_primera" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
