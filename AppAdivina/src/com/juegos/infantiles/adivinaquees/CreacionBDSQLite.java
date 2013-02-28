@@ -21,6 +21,8 @@ public class CreacionBDSQLite extends SQLiteOpenHelper {
     //Nombre de la tabla (puede haber tantas como necesitemos)
     public static final String NOMBRE_TABLA1 = "tipos";
     public static final String NOMBRE_TABLA2 = "imagenes";
+    public static final String NOMBRE_TABLA3 = "tipos_personalizados";
+    public static final String NOMBRE_TABLA4 = "imagenes_personalizadas";
     //Campo 1
     public static final String ID1 = "pkTipo";
     public static final String ID2 = "pkImagenes";
@@ -45,12 +47,18 @@ public class CreacionBDSQLite extends SQLiteOpenHelper {
     	//Log.i("Base de datos", "Estoy dentro!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         db.execSQL("create table " + NOMBRE_TABLA1 + "(" + ID1 + " integer primary key autoincrement not null, " + NOMBRE1 + " text);");
         db.execSQL("create table " + NOMBRE_TABLA2 + "(" + ID2 + " integer primary key autoincrement not null, " + NOMBRE2 + " text, fkTipo numeric);");
+        db.execSQL("create table " + NOMBRE_TABLA3 + "(" + ID1 + " integer primary key autoincrement not null, " + NOMBRE1 + " text);");
+        db.execSQL("create table " + NOMBRE_TABLA4 + "(" + ID2 + " integer primary key autoincrement not null, " + NOMBRE2 + " text, fkTipo numeric);");
         db.execSQL("INSERT INTO tipos (nombre) VALUES ('Frutas')");
         db.execSQL("INSERT INTO tipos (nombre) VALUES ('Animales')");
-        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('banana',1)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('platano',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('naranja',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('pera',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('uva',1)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('manzana',1)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('sandia',1)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('melon',1)");
+        db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('fresa',1)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('conejo',2)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('elefante',2)");
         db.execSQL("INSERT INTO imagenes (nombre,fkTipo) VALUES ('tigre',2)");

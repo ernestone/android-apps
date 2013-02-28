@@ -5,25 +5,35 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+
 import dani.funciones.Basicas;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Juego extends Activity implements OnClickListener,TextToSpeech.OnInitListener{
+public class Juego extends Activity implements OnClickListener,TextToSpeech.OnInitListener,OnLoadCompleteListener{
 
 	ArrayList<Imagen> imagenes;
-	int idResource;
+	int idResource, flujodemusica;
 	TextView txtPalabraClave, img1,img2,img3,img4;
 	SQLiteDatabase db;
 	CreacionBDSQLite creaBDSL;
@@ -33,6 +43,8 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
     private static final int MY_DATA_CHECK_CODE = 1234;
     Context contexto=this;
     TextToSpeech.OnInitListener listener=this;
+    TimerTask timerTask;
+    int[] idAnim={R.anim.sup_izq,R.anim.sup_der,R.anim.inf_izq,R.anim.inf_der};
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +77,7 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
         
         db.close();
         
-        for (Imagen imagen : imagenes) {
+        for (Imagen imagen: imagenes) {
         	this.idResource=Juego.this.getResources().getIdentifier("drawable/" + imagen.getNombre(), null, Juego.this.getPackageName());
         	imagen.setIDResource(this.idResource);
 		}
@@ -83,16 +95,17 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
         for (int num : ordenImagenes) {
 			imagenesFinales.add(imagenes.get(num));
 		}
-        
-        
-        //ArrayList<Imagen> imagenesFinales=imagenesAMostrar(4);
        
         //Con esta funci�n, escogemos la imagen para acertar.
         imagenCorrecta(imagenesFinales);
+        speechLoopStart();
         
+        for (int i=0;i<imagenesFinales.size();i++) {
+        	imagenesFinales.get(i).setIdAnimacion(this.idAnim[i]);
+		}
         
-        
-
+        /*ImageView img=new ImageView(this);
+        img.*/
         
         this.img1.setBackgroundResource(imagenesFinales.get(0).getIDResource());
         imagenesFinales.get(0).setIDTextViewAsociado(R.id.img1);
@@ -115,13 +128,22 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
     }
 
 	public void onClick(View v) {
+
+		SoundPool sp = new SoundPool(8, AudioManager.STREAM_MUSIC, 0);
+		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		for (Imagen img : imagenes) {
 			if(v.getId()==img.getIDTextViewAsociado()){
 				if(img.isCorrecto()){
-					Toast toast = Toast.makeText(this, "Muy bien!! Has acertado!!", Toast.LENGTH_SHORT);
-			        toast.show();
-			        finish();
+					speechLoopStop();
+					v.bringToFront();
+					flujodemusica= sp.load(this,R.raw.aplausos,1);
+					sp.setOnLoadCompleteListener(this);
+					Animation anim = AnimationUtils.loadAnimation(this, img.getIdAnimacion());
+					v.startAnimation(anim);
+					
 				}else{
+					flujodemusica= sp.load(this,R.raw.error,1);
+					sp.setOnLoadCompleteListener(this);
 					Toast toast = Toast.makeText(this, "Mal. Vuelve a intentarlo!!", Toast.LENGTH_SHORT);
 			        toast.show();
 				}
@@ -135,10 +157,13 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
 		int index=(this.rand.nextInt(imagenes.size()));
         
         imagenes.get(index).setCorrecto(true);
-        this.txtPalabraClave.setText(imagenes.get(index).getNombre());
+        this.txtPalabraClave.setText(imagenes.get(index).getNombre().toUpperCase());
+        this.txtPalabraClave.setTextColor(Color.LTGRAY);
         
-        
-        TimerTask timerTask = new TimerTask() 
+    }
+	
+	public void speechLoopStart(){
+		this.timerTask = new TimerTask() 
         { 
             public void run()  
             { 
@@ -150,38 +175,11 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
         Timer timer = new Timer(); 
         // Dentro de 0 milisegundos avísame cada 1000 milisegundos 
         timer.scheduleAtFixedRate(timerTask, 1500, 5000);
-        
-        
 	}
-
-    public ArrayList<Imagen> imagenesAMostrar(int numImagenes){
-    	ArrayList<Imagen> imagenesDefinitivas=new ArrayList<Imagen>();
-    	int imagenAMostrar;
-    	boolean repetido=false;
-    	int imagenesAnhadidas=0;
-    	
-    	while(imagenesAnhadidas<numImagenes){
-    		repetido=false;
-    		imagenAMostrar=(this.rand.nextInt(imagenes.size()));
-    		if(imagenesDefinitivas.size()!=0){
-	    		for(Imagen img: imagenesDefinitivas){
-	    			if(img.getIDResource()==imagenes.get(imagenAMostrar).getIDResource()){
-	    				repetido=true;
-	    				break;
-	    			}
-	    		}
-	    		if(!repetido) {
-	    			imagenesDefinitivas.add(imagenes.get(imagenAMostrar));
-	    			imagenesAnhadidas++;
-	    		}
-    		}else{
-    			imagenesDefinitivas.add(imagenes.get(imagenAMostrar));
-    			imagenesAnhadidas++;
-    		}
-		}
-    	
-    	return imagenesDefinitivas;
-    }
+	
+	public void speechLoopStop(){
+		timerTask.cancel();
+	}
     
     public Tipo getTipo(String cadenaTipo) {
 		Tipo tipo=new Tipo();
@@ -225,6 +223,14 @@ public class Juego extends Activity implements OnClickListener,TextToSpeech.OnIn
 		mTts.speak(txtPalabraClave.getText().toString(),
                 TextToSpeech.QUEUE_FLUSH,  // Drop all pending entries in the playback queue.
                 null);
+		
+	}
+
+	public void onLoadComplete(SoundPool sp, int sampleId, int status) {
+		Log.i("Dentro del OnLoad del sonido Aplausos:", "SSSSIIIIIIIII");
+		
+		
+		sp.play(flujodemusica, 1, 1, 0, 0, 1);
 		
 	}
 }

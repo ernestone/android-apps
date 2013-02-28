@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class Principal extends Activity implements OnClickListener{
 
-	Button jugar;
+	Button jugar, crear;
 	Intent ventana=new Intent();
 	
     @Override
@@ -22,6 +22,9 @@ public class Principal extends Activity implements OnClickListener{
         
         this.jugar=(Button)this.findViewById(R.id.btnJugar);
         this.jugar.setOnClickListener(this);
+        
+        this.crear=(Button)this.findViewById(R.id.btnCrearNueva);
+        this.crear.setOnClickListener(this);
     }
 
     @Override
@@ -31,9 +34,20 @@ public class Principal extends Activity implements OnClickListener{
     }
 
 	public void onClick(View v) {
-		this.ventana.setClass(getApplicationContext(), Inicio.class);
-		startActivity(this.ventana);
 		
+		switch (v.getId()) {
+		case R.id.btnJugar:
+			this.ventana.setClass(getApplicationContext(), Inicio.class);
+			startActivity(this.ventana);
+			break;
+		
+		case R.id.btnCrearNueva:
+			this.ventana.setClass(getApplicationContext(), GaleriaPersonalizada.class);
+			startActivity(this.ventana);	
+
+		default:
+			break;
+		}
 	}
 
     

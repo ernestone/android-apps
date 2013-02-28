@@ -27,6 +27,8 @@ public class Inicio extends Activity implements OnClickListener{
         
         this.btnFrutas=(TextView) this.findViewById(R.id.btnFrutas);
         this.btnFrutas.setOnClickListener(this);
+        
+        overridePendingTransition(R.anim.fade, R.anim.fade);
     }
     
     @Override

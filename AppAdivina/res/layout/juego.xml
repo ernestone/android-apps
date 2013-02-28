@@ -1,57 +1,61 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/sky"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dip" >
+    <TextView
+        android:id="@+id/img1"
+        android:layout_width="247dp"
+        android:layout_height="165dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:id="@+id/img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/img2"
+        android:layout_width="247dp"
+        android:layout_height="165dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:id="@+id/img2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dip"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/img3"
+        android:layout_width="247dp"
+        android:layout_height="165dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/img1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dip" >
-
-        <TextView
-            android:id="@+id/img3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/img4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dip"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/img4"
+        android:layout_width="247dp"
+        android:layout_height="165dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/img2"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/txtPalabraClave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/img4"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical|center"
         android:layout_marginTop="120dip"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/Palabra_clave" />
 
-</LinearLayout>
+</RelativeLayout>

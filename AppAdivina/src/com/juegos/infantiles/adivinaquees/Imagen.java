@@ -2,7 +2,7 @@ package com.juegos.infantiles.adivinaquees;
 
 public class Imagen {
 	
-	private int IDResource, IDTextViewAsociado;
+	private int IDResource, IDTextViewAsociado,idAnimacion;
 	private String nombre;
 	private boolean correcto=false;
 	
@@ -33,6 +33,12 @@ public class Imagen {
 	}
 	public void setIDTextViewAsociado(int iDTextViewAsociado) {
 		IDTextViewAsociado = iDTextViewAsociado;
+	}
+	public int getIdAnimacion() {
+		return idAnimacion;
+	}
+	public void setIdAnimacion(int idAnimacion) {
+		this.idAnimacion = idAnimacion;
 	}
 	
 	
