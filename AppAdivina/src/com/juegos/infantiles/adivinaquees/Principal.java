@@ -6,24 +6,25 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.support.v4.app.NavUtils;
 
 public class Principal extends Activity implements OnClickListener{
 
-	Button jugar;
+	Button jugar, crear;
 	Intent ventana=new Intent();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.principal);
         
         this.jugar=(Button)this.findViewById(R.id.btnJugar);
         this.jugar.setOnClickListener(this);
+        
+        this.crear=(Button)this.findViewById(R.id.btnCrearNueva);
+        this.crear.setOnClickListener(this);
     }
 
     @Override
@@ -33,9 +34,20 @@ public class Principal extends Activity implements OnClickListener{
     }
 
 	public void onClick(View v) {
-		this.ventana.setClass(getApplicationContext(), Inicio.class);
-		startActivity(this.ventana);
 		
+		switch (v.getId()) {
+		case R.id.btnJugar:
+			this.ventana.setClass(getApplicationContext(), Inicio.class);
+			startActivity(this.ventana);
+			break;
+		
+		case R.id.btnCrearNueva:
+			this.ventana.setClass(getApplicationContext(), GaleriaPersonalizada.class);
+			startActivity(this.ventana);	
+
+		default:
+			break;
+		}
 	}
 
     

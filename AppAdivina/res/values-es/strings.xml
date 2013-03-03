@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Adivina Que es</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_principal">Principal</string>
     <string name="jugar">Jugar</string>
-    <string name="title_activity_menu">Menu</string>
     <string name="title_activity_juego">Juego</string>
     <string name="title_activity_inicio">Inicio</string>
-    <string name="boton_frutas">Boton frutas</string>
-    <string name="boton_animales">Boton animales</string>
-	<string name="title_activity_primera">Primera</string>
-	<string name="btnFrutas">Frutas</string>
-	<string name="btnAnimales">Animales</string>
 </resources>

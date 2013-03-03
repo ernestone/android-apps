@@ -8,68 +8,128 @@
 package com.juegos.infantiles.adivinaquees;
 
 public final class R {
+    public static final class anim {
+        public static final int cycle_7=0x7f040000;
+        public static final int fade=0x7f040001;
+        public static final int hyperspace_in=0x7f040002;
+        public static final int hyperspace_out=0x7f040003;
+        public static final int inf_der=0x7f040004;
+        public static final int inf_izq=0x7f040005;
+        public static final int layout_animation_row_left_slide=0x7f040006;
+        public static final int layout_animation_row_right_slide=0x7f040007;
+        public static final int layout_animation_table=0x7f040008;
+        public static final int layout_bottom_to_top_slide=0x7f040009;
+        public static final int layout_grid_fade=0x7f04000a;
+        public static final int layout_grid_inverse_fade=0x7f04000b;
+        public static final int layout_random_fade=0x7f04000c;
+        public static final int layout_wave_scale=0x7f04000d;
+        public static final int push_left_in=0x7f04000e;
+        public static final int push_left_out=0x7f04000f;
+        public static final int push_up_in=0x7f040010;
+        public static final int push_up_out=0x7f040011;
+        public static final int shake=0x7f040012;
+        public static final int slide_left=0x7f040013;
+        public static final int slide_right=0x7f040014;
+        public static final int slide_top_to_bottom=0x7f040015;
+        public static final int sup_der=0x7f040016;
+        public static final int sup_izq=0x7f040017;
+        public static final int wave_scale=0x7f040018;
+    }
     public static final class attr {
     }
     public static final class dimen {
-        public static final int padding_large=0x7f040002;
-        public static final int padding_medium=0x7f040001;
-        public static final int padding_small=0x7f040000;
+        public static final int Palabra_clave=0x7f060003;
+        public static final int padding_large=0x7f060002;
+        public static final int padding_medium=0x7f060001;
+        public static final int padding_small=0x7f060000;
+        public static final int prueba=0x7f060004;
     }
     public static final class drawable {
         public static final int animales=0x7f020000;
-        public static final int ardilla=0x7f020001;
-        public static final int ballena=0x7f020002;
-        public static final int banana=0x7f020003;
-        public static final int buho=0x7f020004;
-        public static final int caracol=0x7f020005;
-        public static final int frutas=0x7f020006;
+        public static final int caballo=0x7f020001;
+        public static final int conejo=0x7f020002;
+        public static final int elefante=0x7f020003;
+        public static final int fresa=0x7f020004;
+        public static final int frutas=0x7f020005;
+        public static final int gato=0x7f020006;
         public static final int ic_action_search=0x7f020007;
         public static final int ic_launcher=0x7f020008;
-        public static final int naranja=0x7f020009;
-        public static final int pera=0x7f02000a;
-        public static final int uva=0x7f02000b;
+        public static final int leon=0x7f020009;
+        public static final int lobo=0x7f02000a;
+        public static final int manzana=0x7f02000b;
+        public static final int melon=0x7f02000c;
+        public static final int naranja=0x7f02000d;
+        public static final int pera=0x7f02000e;
+        public static final int perro=0x7f02000f;
+        public static final int platano=0x7f020010;
+        public static final int sandia=0x7f020011;
+        public static final int sky=0x7f020012;
+        public static final int tigre=0x7f020013;
+        public static final int uva=0x7f020014;
     }
     public static final class id {
-        public static final int btnAnimales=0x7f080001;
-        public static final int btnFrutas=0x7f080000;
-        public static final int btnJugar=0x7f080007;
-        public static final int img1=0x7f080002;
-        public static final int img2=0x7f080003;
-        public static final int img3=0x7f080004;
-        public static final int img4=0x7f080005;
-        public static final int menu_settings=0x7f080008;
-        public static final int txtPalabraClave=0x7f080006;
+        public static final int RelativeLayout1=0x7f0a000c;
+        public static final int btnAnimales=0x7f0a000b;
+        public static final int btnCrear=0x7f0a0004;
+        public static final int btnCrearNueva=0x7f0a0013;
+        public static final int btnFrutas=0x7f0a000a;
+        public static final int btnJugar=0x7f0a0012;
+        public static final int btnNueva=0x7f0a0006;
+        public static final int editar=0x7f0a0007;
+        public static final int edtNombre=0x7f0a0003;
+        public static final int img1=0x7f0a000d;
+        public static final int img2=0x7f0a000e;
+        public static final int img3=0x7f0a000f;
+        public static final int img4=0x7f0a0010;
+        public static final int linearLayout1=0x7f0a0001;
+        public static final int lstGalerias=0x7f0a0008;
+        public static final int menu_settings=0x7f0a0014;
+        public static final int sky=0x7f0a0000;
+        public static final int txtAvisoNoGalerias=0x7f0a0009;
+        public static final int txtNombre=0x7f0a0002;
+        public static final int txtNombreGaleria=0x7f0a0005;
+        public static final int txtPalabraClave=0x7f0a0011;
     }
     public static final class layout {
-        public static final int activity_inicio=0x7f030000;
-        public static final int activity_juego=0x7f030001;
-        public static final int activity_menu=0x7f030002;
-        public static final int activity_principal=0x7f030003;
-        public static final int inicio=0x7f030004;
+        public static final int crear_nueva=0x7f030000;
+        public static final int editar_galeria=0x7f030001;
+        public static final int galeria_personalizada=0x7f030002;
+        public static final int inicio=0x7f030003;
+        public static final int juego=0x7f030004;
+        public static final int principal=0x7f030005;
     }
     public static final class menu {
-        public static final int activity_inicio=0x7f070000;
-        public static final int activity_juego=0x7f070001;
-        public static final int activity_menu=0x7f070002;
-        public static final int activity_primera=0x7f070003;
-        public static final int activity_principal=0x7f070004;
+        public static final int activity_crear_nueva=0x7f090000;
+        public static final int activity_inicio=0x7f090001;
+        public static final int activity_juego=0x7f090002;
+        public static final int activity_principal=0x7f090003;
+        public static final int editar_galeria=0x7f090004;
+        public static final int galeria_personalizada=0x7f090005;
+    }
+    public static final class raw {
+        public static final int aplausos=0x7f050000;
+        public static final int error=0x7f050001;
     }
     public static final class string {
-        public static final int app_name=0x7f050000;
-        public static final int boton_animales=0x7f050009;
-        public static final int boton_frutas=0x7f050008;
-        public static final int btnAnimales=0x7f05000c;
-        public static final int btnFrutas=0x7f05000b;
-        public static final int hello_world=0x7f050001;
-        public static final int jugar=0x7f050004;
-        public static final int menu_settings=0x7f050002;
-        public static final int title_activity_inicio=0x7f050007;
-        public static final int title_activity_juego=0x7f050006;
-        public static final int title_activity_menu=0x7f050005;
-        public static final int title_activity_primera=0x7f05000a;
-        public static final int title_activity_principal=0x7f050003;
+        public static final int app_name=0x7f070000;
+        public static final int aviso_no_existen_galerias=0x7f07000d;
+        public static final int crear_nombre=0x7f070010;
+        public static final int crear_nueva=0x7f070007;
+        public static final int editar=0x7f07000c;
+        public static final int hello_world=0x7f070008;
+        public static final int jugar=0x7f070003;
+        public static final int menu_settings=0x7f070001;
+        public static final int nombre=0x7f07000f;
+        public static final int nueva=0x7f07000b;
+        public static final int sky=0x7f070006;
+        public static final int title_activity_crear_nueva=0x7f070009;
+        public static final int title_activity_editar_galeria=0x7f07000e;
+        public static final int title_activity_galeria_personalizada=0x7f07000a;
+        public static final int title_activity_inicio=0x7f070005;
+        public static final int title_activity_juego=0x7f070004;
+        public static final int title_activity_principal=0x7f070002;
     }
     public static final class style {
-        public static final int AppTheme=0x7f060000;
+        public static final int AppTheme=0x7f080000;
     }
 }
