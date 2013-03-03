@@ -11,4 +11,6 @@
     <string name="boton_frutas">Boton frutas</string>
     <string name="boton_animales">Boton animales</string>
     <string name="title_activity_primera">Primera</string>
+	<string name="btnFrutas">Frutas</string>
+	<string name="btnAnimales">Animales</string>    
 </resources>
